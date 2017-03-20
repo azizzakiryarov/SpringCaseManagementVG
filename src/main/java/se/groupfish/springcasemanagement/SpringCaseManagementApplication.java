@@ -36,10 +36,13 @@ public class SpringCaseManagementApplication {
 			IssueService issueService = context.getBean(IssueService.class);
 //___________________________________________________________________________________________________//
 			
-			Team team1 = new Team("Chicago");
-			Team team2 = new Team("Kazakhstan");
-			Team team3 = new Team("Kanada");
+//			Team team1 = new Team("Chicago");
+//			Team team2 = new Team("Kazakhstan");
+//			Team team3 = new Team("Kanada");
 
+			//HEJ HEJ
+			
+			
 //			User user1 = new User("Erik1", "Eriksson", "100001-Erik", "001");
 //			User user2 = new User("Erik2", "Eriksson", "100002-Erik", "002");
 //			User user3 = new User("Erik3", "Eriksson", "100003-Erik", "003");
