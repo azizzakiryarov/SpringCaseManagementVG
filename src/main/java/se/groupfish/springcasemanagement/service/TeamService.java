@@ -119,4 +119,11 @@ public class TeamService {
 	public boolean isTeamPersisted(Team team) {
 		return team.getId() != null;
 	}
+	
+	// This method I used for RestCaseManagemenent
+		public Team getTeamById(long id) {
+			return teamRepository.findOne(id);
+		}
+	
+	
 }
