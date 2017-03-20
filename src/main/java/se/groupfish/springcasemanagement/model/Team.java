@@ -20,9 +20,8 @@ public class Team extends AbstractEntity {
 	protected Team() {
 	}
 
-	public Team(String teamName) {
+	public Team(String teamName, String state) {
 		this.teamName = teamName;
-		state = "Active";
 	}
 
 	public Long getId() {
