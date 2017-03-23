@@ -36,7 +36,7 @@ public class Config {
 		config.setDriverClassName("com.mysql.jdbc.Driver");
 		config.setJdbcUrl("jdbc:mysql://localhost:3306/SpringCaseManagement?useSSL=false");
 		config.setUsername("root");
-		config.setPassword("keso");
+		config.setPassword("6600fold");
 
 		return new HikariDataSource(config);
 		

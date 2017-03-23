@@ -64,17 +64,17 @@ public class SpringCaseManagementApplication {
 //			User user19 = new User("Erik19", "Eriksson", "100019-Erik", "019");
 //			User user20 = new User("Erik20", "Eriksson", "100020-Erik", "020");
 			
-			WorkItem workItem1 = new WorkItem("WI1", "Bye a car");
-			WorkItem workItem2 = new WorkItem("WI2", "Bye a car");
-			WorkItem workItem3 = new WorkItem("WI3", "Bye a car");
-			WorkItem workItem4 = new WorkItem("WI4", "Bye a car");
-			WorkItem workItem5 = new WorkItem("WI5", "Bye a car");
-		
-			WorkItem workItem6 = new WorkItem("WI6", "Bye a car");
-			WorkItem workItem7 = new WorkItem("WI7", "Bye a car");
-			WorkItem workItem8 = new WorkItem("WI8", "Bye a car");
-			WorkItem workItem9 = new WorkItem("WI9", "Bye a car");
-			WorkItem workItem10 = new WorkItem("WI10", "Bye a car");
+//			WorkItem workItem1 = new WorkItem("WI1", "Bye a car");
+//			WorkItem workItem2 = new WorkItem("WI2", "Bye a car");
+//			WorkItem workItem3 = new WorkItem("WI3", "Bye a car");
+//			WorkItem workItem4 = new WorkItem("WI4", "Bye a car");
+//			WorkItem workItem5 = new WorkItem("WI5", "Bye a car");
+//		
+//			WorkItem workItem6 = new WorkItem("WI6", "Bye a car");
+//			WorkItem workItem7 = new WorkItem("WI7", "Bye a car");
+//			WorkItem workItem8 = new WorkItem("WI8", "Bye a car");
+//			WorkItem workItem9 = new WorkItem("WI9", "Bye a car");
+//			WorkItem workItem10 = new WorkItem("WI10", "Bye a car");
 			
 			Issue issue = new Issue("Goodjob");
 			Issue issue2 = new Issue("Goodjob2");

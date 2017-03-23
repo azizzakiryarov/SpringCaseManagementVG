@@ -8,10 +8,11 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import se.groupfish.springcasemanagement.model.Team;
 
-public interface TeamRepository extends CrudRepository<Team, Long> {
+public interface TeamRepository extends CrudRepository<Team, Long>, PagingAndSortingRepository<Team, Long> {
 
 	@Modifying
 	@Transactional
@@ -46,5 +47,7 @@ public interface TeamRepository extends CrudRepository<Team, Long> {
 	public void addUserToTeam(long teamId, long userId);
 
 	Collection<Team> findByTeamName(String teamName);
+	
+	
 
 }

@@ -26,7 +26,7 @@ public class WorkItem extends AbstractEntity {
 	private String description;
 	@Column(nullable = false)
 	private String state;
-
+	
 	@ManyToOne
 	private User user;
 
@@ -46,13 +46,13 @@ public class WorkItem extends AbstractEntity {
 	@LastModifiedDate
 	private Date lastModifiedDate;
 
-	protected WorkItem() {
-	}
+	public WorkItem() {}
 
-	public WorkItem(String title, String description) {
+	// I changed here because it was state = "Unstarted";
+	public WorkItem(String title, String description, String state) {
 		this.title = title;
 		this.description = description;
-		this.state = "Unstarted";
+		this.state = state;
 	}
 
 	public String getTitle() {

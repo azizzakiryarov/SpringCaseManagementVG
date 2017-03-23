@@ -163,7 +163,7 @@ public class WorkItemService {
 
 		try {
 
-			return workItemRepository.getWorkItemsByStatusAndPeriod(state, startDate, endDate, pageable); //fix
+			return workItemRepository.getWorkItemsByStatusAndPeriod(state, startDate, endDate, pageable); // fix
 
 		} catch (DataAccessException e) {
 			throw new ServiceException("It's not possible to get all workItems by state and period" + e);
@@ -176,5 +176,10 @@ public class WorkItemService {
 
 	public boolean isUserPersisted(User user) {
 		return user.getId() != null;
+	}
+
+	// This I used for RestCaseManagement project
+	public WorkItem getWorkItemById(long id) {
+		return workItemRepository.findOne(id);
 	}
 }
