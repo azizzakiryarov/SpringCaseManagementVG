@@ -64,16 +64,21 @@ public class IssueService {
 		}
 	}
 
-	public Collection<WorkItem> getAllWorkItemWithIssue() throws ServiceException {
+	public Collection<WorkItem> getAllWorkItemsWithIssue(Long id) throws ServiceException {
 		try {
-			return workItemRepository.getAllWorkItemsWithIssue();
+			return workItemRepository.findByIssueId(id);
 		} catch (DataAccessException e) {
 			throw new ServiceException("Unable to comply. Cannot access data.", e);
 		}
 	}
-	
-	public Page<Issue> findAllIssues (Pageable page){
+
+	public Page<Issue> findAllIssues(Pageable page) {
 		return issueRepository.findAll(page);
+	}
+
+	// This method I used for RestCaseManagement
+	public Issue getById(Long id) {
+		return issueRepository.findOne(id);
 	}
 
 }

@@ -162,9 +162,7 @@ public class WorkItemService {
 			throws ServiceException {
 
 		try {
-
 			return workItemRepository.getWorkItemsByStatusAndPeriod(state, startDate, endDate, pageable); // fix
-
 		} catch (DataAccessException e) {
 			throw new ServiceException("It's not possible to get all workItems by state and period" + e);
 		}
