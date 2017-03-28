@@ -30,6 +30,9 @@ public class TeamService {
 		if (isTeamPersisted(teamToSave)) {
 			throw new ServiceException("This team is already persisted!");
 		}
+		if (team.equals(null)) {
+			throw new ServiceException("Team is null...");
+		}
 		if (!teamRepository.findByTeamName(teamToSave.getTeamName()).isEmpty()) {
 			throw new ServiceException("A Team already exists with that name.");
 		}
@@ -108,8 +111,13 @@ public class TeamService {
 		}
 	}
 
-	public Collection<Team> getAllTeam() {
-		return teamRepository.getAllTeams();
+	public Collection<Team> getAllTeam() throws ServiceException {
+
+		if (teamRepository.getAllTeams().isEmpty()) {
+			throw new ServiceException("Team list is empty...");
+		} else {
+			return teamRepository.getAllTeams();
+		}
 	}
 
 	public Collection<User> getAllUsersFromOneTeam(long id) {
@@ -119,11 +127,9 @@ public class TeamService {
 	public boolean isTeamPersisted(Team team) {
 		return team.getId() != null;
 	}
-	
+
 	// This method I used for RestCaseManagemenent
-		public Team getTeamById(long id) {
-			return teamRepository.findOne(id);
-		}
-	
-	
+	public Team getTeamById(long id) {
+		return teamRepository.findOne(id);
+	}
 }

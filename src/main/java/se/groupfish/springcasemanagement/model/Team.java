@@ -22,6 +22,7 @@ public class Team extends AbstractEntity {
 
 	public Team(String teamName, String state) {
 		this.teamName = teamName;
+		this.state = state;
 	}
 
 	public Long getId() {

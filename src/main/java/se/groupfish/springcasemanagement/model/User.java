@@ -26,8 +26,9 @@ public class User extends AbstractEntity {
 
 	@ManyToOne
 	private Team team;
-	
-	public User(){}
+
+	public User() {
+	}
 
 	public User(String firstName, String lastName, String userName, String userNumber, String state) {
 		this.firstName = firstName;
@@ -37,12 +38,12 @@ public class User extends AbstractEntity {
 		this.state = state;
 	}
 
-	public User(String firstName, String lastName, String userName, String userNumber, long userId) {
+	public User(String firstName, String lastName, String userName, String userNumber, String state, long userId) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.userNumber = userNumber;
-		state = "Active";
+		this.state = state;
 		this.id = userId;
 	}
 
