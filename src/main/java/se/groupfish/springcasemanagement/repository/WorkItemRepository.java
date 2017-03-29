@@ -33,11 +33,11 @@ public interface WorkItemRepository extends PagingAndSortingRepository<WorkItem,
 
 	Collection<WorkItem> findByUserTeamId(Long id);
 	
-	Collection<WorkItem> findByIssueId(Long id);
+//	Collection<WorkItem> findByIssueId(Long id);
 	
 
-//	@Query("select w from WorkItem w where w.issue is not null")
-//	Collection<WorkItem> getAllWorkItemsWithIssue();
+	@Query("select w from WorkItem w where w.issue is not null")
+	Collection<WorkItem> getAllWorkItemsWithIssue();
 
 //	@Transactional
 //	@Query("select w from WorkItem w where state = ?1 and lastModifiedDate between ?2 and ?3")

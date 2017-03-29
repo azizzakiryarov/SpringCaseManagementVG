@@ -64,9 +64,9 @@ public class IssueService {
 		}
 	}
 
-	public Collection<WorkItem> getAllWorkItemsWithIssue(Long id) throws ServiceException {
+	public Collection<WorkItem> getAllWorkItemsWithIssue() throws ServiceException {
 		try {
-			return workItemRepository.findByIssueId(id);
+			return workItemRepository.getAllWorkItemsWithIssue();
 		} catch (DataAccessException e) {
 			throw new ServiceException("Unable to comply. Cannot access data.", e);
 		}
