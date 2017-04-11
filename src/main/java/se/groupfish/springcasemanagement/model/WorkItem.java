@@ -26,7 +26,7 @@ public class WorkItem extends AbstractEntity {
 	private String description;
 	@Column(nullable = false)
 	private String state;
-	
+
 	@ManyToOne
 	private User user;
 
@@ -46,7 +46,8 @@ public class WorkItem extends AbstractEntity {
 	@LastModifiedDate
 	private Date lastModifiedDate;
 
-	public WorkItem() {}
+	public WorkItem() {
+	}
 
 	// I changed here because it was state = "Unstarted";
 	public WorkItem(String title, String description, String state) {
@@ -125,6 +126,55 @@ public class WorkItem extends AbstractEntity {
 
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((issue == null) ? 0 : issue.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WorkItem other = (WorkItem) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (issue == null) {
+			if (other.issue != null)
+				return false;
+		} else if (!issue.equals(other.issue))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
 	}
 
 	@Override

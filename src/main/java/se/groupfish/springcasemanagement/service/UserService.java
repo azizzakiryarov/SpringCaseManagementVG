@@ -38,7 +38,7 @@ public class UserService {
 			throw new ServiceException("Unable to comply. User is alreday persisted.");
 		}
 		if (user.getUserName().length() < 10) {
-			throw new ServiceException("Username must be 10 characters long minimum. " + user.getUserName());
+			throw new ServiceException("Username must be 10 characters long minimum. " +  "userName: " + user.getUserName());
 		}
 		if (userRepository.getAllUsersName().contains(user.getUserName())) {
 			throw new ServiceException("Cannot create user. Username is already in use.");
@@ -153,7 +153,7 @@ public class UserService {
 	}
 	
 	/*
-	 *This method use for my RestCaseManagement projekt 
+	 *This method use for my RestCaseManagement project 
 	 */
 	 
 	public User getUserById(long id){

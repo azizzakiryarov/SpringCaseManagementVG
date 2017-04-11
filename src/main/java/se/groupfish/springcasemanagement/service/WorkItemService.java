@@ -30,37 +30,15 @@ public class WorkItemService {
 
 	public WorkItem createWorkItem(WorkItem workItem) throws ServiceException {
 		WorkItem saveWorkItem = workItem;
-		if (isWorkItemPersisted(workItem)) {
-			throw new ServiceException("Unable to comply. WorkItem already exist.");
+		for (WorkItem item : workItemRepository.findAll()) {
+			if (workItem.equals(item)) {
+				throw new ServiceException("Unable to comply. WorkItem already exist.");
+			}
 		}
 		try {
 			return workItemRepository.save(saveWorkItem);
 		} catch (DataAccessException e) {
 			throw new ServiceException("WorkItem could not be created.");
-		}
-	}
-
-	@Transactional
-	public WorkItem addWorkItemToUser(Long workItemid, Long userId) throws ServiceException {
-		if (workItemRepository.exists(workItemid) && userRepository.exists(userId)) {
-			if (!userRepository.findOne(userId).getState().equals("Active")) {
-				throw new ServiceException("Unable to comply. Unable to assign workitems to non-active users.");
-			}
-			if (workItemRepository.findByUserId(userId).size() >= 5) {
-				throw new ServiceException("Unable to comply. User cannot have more than 5 workitems assigned to it.");
-			}
-			try {
-				WorkItem addWorkItem = workItemRepository.findOne(workItemid);
-				User targetUser = userRepository.findOne(userId);
-				addWorkItem.setUser(targetUser);
-				return workItemRepository.save(addWorkItem);
-
-			} catch (DataAccessException e) {
-
-				throw new ServiceException("Could not add user to workItem");
-			}
-		} else {
-			throw new ServiceException("Unable to comply. Unknown user or workitem.");
 		}
 	}
 
@@ -111,6 +89,42 @@ public class WorkItemService {
 		}
 	}
 
+	public void removeWorkItem(Long id) throws ServiceException {
+		if (workItemRepository.exists(id)) {
+			try {
+				workItemRepository.delete(id);
+			} catch (DataAccessException e) {
+				throw new ServiceException("Could not delete workItem.");
+			}
+		} else {
+			throw new ServiceException("Unable to comply. Unknown workitem.");
+		}
+	}
+
+	@Transactional
+	public WorkItem addWorkItemToUser(Long workItemid, Long userId) throws ServiceException {
+		if (workItemRepository.exists(workItemid) && userRepository.exists(userId)) {
+			if (!userRepository.findOne(userId).getState().equals("Active")) {
+				throw new ServiceException("Unable to comply. Unable to assign workitems to non-active users.");
+			}
+			if (workItemRepository.findByUserId(userId).size() >= 5) {
+				throw new ServiceException("Unable to comply. User cannot have more than 5 workitems assigned to it.");
+			}
+			try {
+				WorkItem addWorkItem = workItemRepository.findOne(workItemid);
+				User targetUser = userRepository.findOne(userId);
+				addWorkItem.setUser(targetUser);
+				return workItemRepository.save(addWorkItem);
+
+			} catch (DataAccessException e) {
+
+				throw new ServiceException("Could not add user to workItem");
+			}
+		} else {
+			throw new ServiceException("Unable to comply. Unknown user or workitem.");
+		}
+	}
+
 	public Collection<WorkItem> getWorkItemByState(String state) throws ServiceException {
 		try {
 			return workItemRepository.findByState(state);
@@ -140,18 +154,6 @@ public class WorkItemService {
 			return workItemRepository.findByDescriptionContaining(descriptionContent);
 		} catch (DataAccessException e) {
 			throw new ServiceException("Unable to get workitems by description content.", e);
-		}
-	}
-
-	public void removeWorkItem(Long id) throws ServiceException {
-		if (workItemRepository.exists(id)) {
-			try {
-				workItemRepository.delete(id);
-			} catch (DataAccessException e) {
-				throw new ServiceException("Could not delete workItem.");
-			}
-		} else {
-			throw new ServiceException("Unable to comply. Unknown workitem.");
 		}
 	}
 

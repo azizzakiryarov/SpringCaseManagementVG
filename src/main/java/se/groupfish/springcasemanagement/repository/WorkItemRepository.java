@@ -21,10 +21,6 @@ public interface WorkItemRepository extends PagingAndSortingRepository<WorkItem,
 	@Query("select w.state from WorkItem w, User u where u.id = ?1")
 	public List<String> getAllWorkItemsState(Long id);
 
-	@Transactional
-	@Query("select w from WorkItem w, User u where u.id = ?1")
-	public List<WorkItem> getAllWorkItems(Long id);
-
 	Collection<WorkItem> findByState(String state);
 
 	Collection<WorkItem> findByDescriptionContaining(String description);
@@ -32,20 +28,11 @@ public interface WorkItemRepository extends PagingAndSortingRepository<WorkItem,
 	Collection<WorkItem> findByUserId(Long id);
 
 	Collection<WorkItem> findByUserTeamId(Long id);
-	
-//	Collection<WorkItem> findByIssueId(Long id);
-	
 
 	@Query("select w from WorkItem w where w.issue is not null")
 	Collection<WorkItem> getAllWorkItemsWithIssue();
 
-//	@Transactional
-//	@Query("select w from WorkItem w where state = ?1 and lastModifiedDate between ?2 and ?3")
-//	Collection<WorkItem> getAllWorkItemsFromOneMonth(String state, String fromWhichDate, String toWhichDate);
-
 	@Query("SELECT w FROM WorkItem w WHERE w.state = :state AND w.lastModifiedDate BETWEEN :startDate AND :endDate")
 	Page<WorkItem> getWorkItemsByStatusAndPeriod(@Param("state") String state, @Param("startDate") Date startDate,
-	@Param("endDate") Date endDate, Pageable pageable);
-	
-//	public WorkItem addWorkItemToUser(Long workItemid, Long userId);
+			@Param("endDate") Date endDate, Pageable pageable);
 }
