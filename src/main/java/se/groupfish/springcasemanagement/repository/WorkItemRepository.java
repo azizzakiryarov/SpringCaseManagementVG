@@ -35,4 +35,6 @@ public interface WorkItemRepository extends PagingAndSortingRepository<WorkItem,
 	@Query("SELECT w FROM WorkItem w WHERE w.state = :state AND w.lastModifiedDate BETWEEN :startDate AND :endDate")
 	Page<WorkItem> getWorkItemsByStatusAndPeriod(@Param("state") String state, @Param("startDate") Date startDate,
 			@Param("endDate") Date endDate, Pageable pageable);
+
+	WorkItem findOne(Long id);
 }

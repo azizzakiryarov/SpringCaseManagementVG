@@ -179,8 +179,11 @@ public class WorkItemService {
 		return user.getId() != null;
 	}
 
-	// This I used for RestCaseManagement project
-	public WorkItem getWorkItemById(long id) {
-		return workItemRepository.findOne(id);
+	public WorkItem getWorkItemById(Long id) throws ServiceException {
+		try {
+			return workItemRepository.findOne(id);
+		} catch (DataAccessException e) {
+			throw new ServiceException("Unable to get workitem by id " + id, e);
+		}
 	}
 }
